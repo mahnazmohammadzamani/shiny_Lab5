@@ -1,5 +1,6 @@
 library(Lab5)
-url1<-"http://api.kolada.se/v2/ou?title=skola"
+url<-"http://api.kolada.se/v2/ou?title=skola"
+
 
 df <- Lab5::my_API(url)
 
