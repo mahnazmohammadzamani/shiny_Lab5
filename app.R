@@ -1,5 +1,6 @@
 library(shiny)
 library(shinythemes)
+library(DT)
 library(Lab5)
 
 url<-"http://api.kolada.se/v2/ou?title=skola"
