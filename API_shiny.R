@@ -1,22 +1,17 @@
+library(shiny)
+library(shinythemes)
 library(Lab5)
+
 url<-"http://api.kolada.se/v2/ou?title=skola"
-
-
 df <- Lab5::my_API(url)
 
 #create Shiny app
-# Setup ----
-library(shiny)
-library(shinythemes)
-
-# Define UI ----
 ui <- fluidPage(
   titlePanel("The number of Scools in each region"),
   ui <- fluidPage(theme = shinytheme("yeti"),
                   navbarPage("Kolada Dataset"), navbarPage("The Region code"),
                   
                   sidebarLayout(sidebarPanel(
-                    #h2()
                     demo_select <- 
                       selectInput("muni_select", 
                                   label = "municipality_name", 
@@ -24,7 +19,6 @@ ui <- fluidPage(
                                   selected = NULL,
                                   width = "100%"),
                     
-                    # in the UI function
                     textOutput("demo_text", container = tags$h3)
                     
                   ),
@@ -37,14 +31,12 @@ Kolada gives you the best opportunities for comparisons and analysis in the muni
                     DT::dataTableOutput("demo_datatable",
                                         width = "50%",
                                         height = "auto"),
-                    
-                    
                   )
                   ))
 )
 
 # Define server logic ----
-server <- function(input, output, session) {
+server <- function(input, output) {
   output$demo_text <- renderText({
     Len=dim(df)[1]
     for (i in 1:Len){
